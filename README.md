@@ -10,6 +10,6 @@ Für Infos/Links und ähnliches gibt es das [Wiki](https://github.com/tuxflo/it1
 
 ##Todo fürs erste Treffen
 Todo List
- - [ ] Code Konventionen
+ - [x] Code Konventionen
  - [ ] Aufgabenverteilung -> konkrete Issues oder Frontend/Backend
  - [ ] Development Server -> HTML Validation, keine Überaschungen bei Deploy
