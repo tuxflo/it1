@@ -10,6 +10,7 @@ Für Infos/Links und ähnliches gibt es das [Wiki](https://github.com/tuxflo/it1
 
 ##Todo fürs erste Treffen
 Todo List
- - [x] Code Konventionen
+ - [ ] Code Konventionen
+ - [ ] Dateiformat/Konventionen (mein Vorschlag, jeder Post erhält eigenen Ordner in dem dann der Artikel als *.md und die Kommentare abgespeichert werden)
  - [ ] Aufgabenverteilung -> konkrete Issues oder Frontend/Backend
  - [ ] Development Server -> HTML Validation, keine Überaschungen bei Deploy
