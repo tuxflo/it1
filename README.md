@@ -7,3 +7,9 @@ Die Issues habe ich 1 zu 1 per copy & paste aus der Aufgabenstellung kopiert.
 
 ##Wiki
 Für Infos/Links und ähnliches gibt es das [Wiki](https://github.com/tuxflo/it1/wiki)
+
+##Todo fürs erste Treffen
+Todo List
+ - [x] Code Konventionen
+ - [ ] Aufgabenverteilung -> konkrete Issues oder Frontend/Backend
+ - [ ] Development Server -> HTML Validation, keine Überaschungen bei Deploy
