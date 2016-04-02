@@ -12,5 +12,5 @@ Für Infos/Links und ähnliches gibt es das [Wiki](https://github.com/tuxflo/it1
 Todo List
  - [ ] Code Konventionen
  - [ ] Dateiformat/Konventionen (mein Vorschlag, jeder Post erhält eigenen Ordner in dem dann der Artikel als *.md und die Kommentare abgespeichert werden)
- - [ ] Aufgabenverteilung -> konkrete Issues oder Frontend/Backend
- - [ ] Development Server -> HTML Validation, keine Überaschungen bei Deploy
+ - [ ] Aufgabenverteilung -> konkrete Issues oder Frontend/Backend?
+ - [ ] Development Server -> * *mein Vorschlag* * lokal entwickeln alles was im `master` Branch landet wird automatisch deployed (siehe Wiki Eintrag zur Einrichtung), HTML Validation, keine Überaschungen bei Deploy
