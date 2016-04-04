@@ -1,6 +1,3 @@
-<?php
-  require_once './Parsedown.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +16,9 @@
 
     <!-- Custom CSS -->
     <link href="css/logo-nav.css" rel="stylesheet">
-
+<link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<script src="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -56,7 +55,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="#">New Post</a></li>
-                      <li><a href="edit.php">Edit Post</a></li>
+                      <li><a href="#">Edit Post</a></li>
                       <li role="separator" class="divider"></li>
                       <li><a href="#">Upload Images</a></li>
                     </ul>
@@ -70,8 +69,39 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1>The next generation Blog engine</h1>
-                <p>Just 14 steps to get a grade 1</p>
+  <form action="save.php" method="POST" class="form-horizontal" role="form">
+    <div class="form-group">
+      <label class="control-label text-left col-sm-2" for="title">Title:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control text-left" name="title" id="title" placeholder="Enter title">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="url">URL:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="url" name="url" placeholder="Enter url">
+      </div>
+    </div>
+<textarea class="col-lg-12" rows="10" name="text" id="demo1"># Intro
+Go ahead, play around with the editor! Be sure to check out **bold** and *italic* styling, or even [links](http://google.com). You can type the Markdown syntax, use the toolbar, or use shortcuts like `cmd-b` or `ctrl-b`.
+
+## Lists
+Unordered lists can be started using the toolbar or by typing `* `, `- `, or `+ `. Ordered lists can be started by typing `1. `.
+
+#### Unordered
+* Lists are a piece of cake
+* They even auto continue as you type
+* A double enter will end them
+* Tabs and shift-tabs work too
+
+#### Ordered
+1. Numbered lists...
+2. ...work too!
+
+## What about images?
+![Yes](http://i.imgur.com/sZlktY7.png)</textarea>
+<input type="submit" value="Save" id="submit" name="submit" class="btn btn-primary pull-right">
+</form>
             </div>
         </div>
     </div>
@@ -82,6 +112,10 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <script>
+    var simplemde = new SimpleMDE();
+    </script>
 
 </body>
 

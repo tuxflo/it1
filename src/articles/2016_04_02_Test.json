@@ -1,0 +1,15 @@
+{
+  "title": "Just a Test",
+  "url": "test",
+  "date": "2016-04-04T13:12:01.625Z"
+  "text": "#Just a headline\n**some bold text**",
+  "comments": [
+    {
+      "email": "foo@example.com",
+      "nickname": "tuxflo",
+      "text": "Just a test comment",
+      "id": 1,
+      "date": "2016-04-04T13:12:01.625Z"
+    }
+  ]
+}
