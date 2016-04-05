@@ -52,7 +52,7 @@
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="edit.php">New Post</a></li>
+                      <li><a href="newpost.php">New Post</a></li>
                       <li><a href="#">Edit Post</a></li>
                       <li role="separator" class="divider"></li>
                       <li><a href="#">Upload Images</a></li>
@@ -80,6 +80,25 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+    var x_timer;    
+    $("#url").keyup(function (e){
+        clearTimeout(x_timer);
+        var user_name = $(this).val();
+        x_timer = setTimeout(function(){
+            check_username_ajax(user_name);
+        }, 1000);
+    });
+
+function check_username_ajax(username){
+    $("#user-result").html('<img src="ajax-loader.gif" />');
+    $.post('username-checker.php', {'username':username}, function(data) {
+      $("#user-result").html(data);
+    });
+}
+});
+</script>
 </body>
 
 </html>

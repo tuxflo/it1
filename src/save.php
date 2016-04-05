@@ -79,7 +79,7 @@ $text = $json_a['text'];
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="edit.php">New Post</a></li>
+                      <li><a href="newpost.php">New Post</a></li>
                       <li><a href="#">Edit Post</a></li>
                       <li role="separator" class="divider"></li>
                       <li><a href="#">Upload Images</a></li>
