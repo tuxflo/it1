@@ -1,3 +1,7 @@
+<?php
+  require_once("Article.php");
+  $first = Article::fromJson("articles/2016_04_05_foo.json");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -132,7 +136,7 @@
         <div class="col-sm-4"><a href="#" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
         </div>
         <div class="col-sm-8">
-          <h3 class="title">How to Fight Fraud with Artificial Intelligence and Intelligent Analytics</h3>
+        <h3 class="title"><?php echo $first->getTitle(); ?></h3>
           <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> July 23, 2014 @ 1:30 PM <span style="float:right"><span class="glyphicon glyphicon-comment"></span> 20</span></p>
           <p>Could artificial intelligence have been used to prevent the high-profile Target breach? The concept is not so far-fetched. Organizations such as Mastercard and RBS WorldPay have long relied on artificial intelligence to detect fraudulent transaction patterns and prevent card.</p>
           
@@ -141,17 +145,7 @@
         </div>
       </div>
       <hr>
-      <div class="row">
-        <div class="col-sm-4"><a href="#" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
-        </div>
-        <div class="col-sm-8">
-          <h3 class="title">Big Payment Data: Leveraging Transactional Data to Ensure an Enterprise Approach to Risk Management</h3>
-          <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> July 23, 2014 @ 1:30 PM</p>
-          <p>60% of organizations were exposed to actual or attempted fraud loss last year. As fraud and risk increases year over year, the amount of data being collected increases as well.
-            </p><p class="text-muted">Presented by <a href="#">Mike Braatz</a>, <a href="#">Jonathan Eber</a></p>
-          
-        </div>
-      </div>
+      <?php echo $first->getRow(); ?>
       <hr>
 
       <ul class="pagination pagination-lg pull-right">
