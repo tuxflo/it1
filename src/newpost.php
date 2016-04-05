@@ -16,9 +16,9 @@
 
     <!-- Custom CSS -->
     <link href="css/logo-nav.css" rel="stylesheet">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-<script src="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/simplemde.min.css">
+    <script src="js/simplemde.min.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
