@@ -1,12 +1,19 @@
 <?php
+require_once("Parsedown.php");
 
 class Article
 {
-  private $title = null;   
+  private $title = null;
   private $url = null;
   private $date = null;
   private $text = null;
   private $comments = null;
+  private $parsedown = null;
+
+  public function __construct()
+  {
+    $parsedown = new Parsedown();
+  }
 
   public static function fromJson($filename)
   {
@@ -17,7 +24,7 @@ class Article
 
   public function setText($text)
   {
-    $this->text = $text; 
+    $this->text = $text;
   }
 
   public function getText()
@@ -50,10 +57,10 @@ class Article
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span>'
               . $this->date . 'July 23, 2014 @ 1:30 PM <span style="float:right"><span class="glyphicon glyphicon-comment"></span> 20</span>
               </p>
-              <p>' . $this->text . '</p>
-              
+              <p>' . $parsedown.text($this->text) . '</p>
+
               <p class="text-muted">Presented by <a href="#">Ellen Richey</a></p>
-              
+
             </div>
           </div>';
     return $row;
