@@ -1,5 +1,4 @@
 <?php
-require_once("Parsedown.php");
 
 class Article
 {
@@ -12,7 +11,8 @@ class Article
 
   public function __construct()
   {
-    $parsedown = new Parsedown();
+    require_once("Parsedown.php");
+    $this->parsedown = new Parsedown();
   }
 
   public static function fromJson($filename)
@@ -42,12 +42,13 @@ class Article
     return $this->title;
   }
 
+  //return the first 16 lines of the article text
   public function getPreview()
   {
-  }
+    $tmp = explode("\n", $this->text);
+    $tmp = array_slice($tmp, 0, 16);
+    $preview = implode("\n", $tmp);
 
-  public function getRow()
-  {
     $row = '
     <div class="row">
             <div class="col-sm-4"><a href="#" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
@@ -57,10 +58,14 @@ class Article
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span>'
               . $this->date . 'July 23, 2014 @ 1:30 PM <span style="float:right"><span class="glyphicon glyphicon-comment"></span> 20</span>
               </p>
-              <p>' . $parsedown.text($this->text) . '</p>
+              <p>' . $this->parsedown->text($preview) . '</p>';
 
-              <p class="text-muted">Presented by <a href="#">Ellen Richey</a></p>
-
+              //check if "read more" link is necessary
+              if(count($tmp) > 15)
+              {
+              $row .= '<p class="text-muted"><a href="#">Read more...</a></p>';
+              }
+              $row .= '
             </div>
           </div>';
     return $row;
