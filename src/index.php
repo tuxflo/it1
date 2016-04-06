@@ -1,5 +1,8 @@
 <?php
   require_once("Article.php");
+  require_once("jsonList.php");
+  $list = new jsonList();
+
   $first = Article::fromJson("articles/2016_04_05_awesome.json");
   $second = Article::fromJson("articles/2016_04_05_Some_text.json");
 ?>
