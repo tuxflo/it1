@@ -22,6 +22,11 @@ class Article
     return $instance;
   }
 
+  public function getUrl()
+  {
+    return "/posts.php?url=" . $this->date . "_" . $this->url;
+  }
+
   public function setText($text)
   {
     $this->text = $text;
@@ -42,6 +47,25 @@ class Article
     return $this->title;
   }
 
+  public function getArticle()
+  {
+    $row = '
+    <div class="row">
+            <div class="col-sm-12"><a href="#" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
+            </div>
+    </div> <!-- row -->
+    <div class="row">
+            <div class="col-sm-8">
+            <h3 class="title">' . $this->title . '</h3>
+              <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span>'
+              . $this->date . 'July 23, 2014 @ 1:30 PM <span style="float:right"><span class="glyphicon glyphicon-comment"></span> 20</span>
+              </p>
+              <p>' . $this->parsedown->text($this->text) . '</p>
+            </div>
+          </div>';
+    return $row;
+  }
+
   //return the first 16 lines of the article text
   public function getPreview()
   {
@@ -54,7 +78,7 @@ class Article
             <div class="col-sm-4"><a href="#" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
             </div>
             <div class="col-sm-8">
-            <h3 class="title">' . $this->title . '</h3>
+            <h3 class="title"> <a href=".' . $this->getUrl() . '">' . $this->title . '</h3></a>
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span>'
               . $this->date . 'July 23, 2014 @ 1:30 PM <span style="float:right"><span class="glyphicon glyphicon-comment"></span> 20</span>
               </p>
