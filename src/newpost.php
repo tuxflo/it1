@@ -21,11 +21,11 @@ $(document).ready(function() {
         clearTimeout(x_timer);
         var url = $(this).val();
         x_timer = setTimeout(function(){
-            check_username_ajax(url);
+            check_file_exists_ajax(url);
         }, 1000);
     });
 
-function check_username_ajax(url){
+function check_file_exists_ajax(url){
     $("#url-result").html('Name already taken');
     $.post('file-checker.php', {'url':url}, function(data) {
       $("#url-result").html(data);

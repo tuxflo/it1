@@ -3,15 +3,16 @@
 //echo $_POST['text'];
 $data = array(
   'title' => $_POST['title'],
-  'url' => $_POST['url'],
+  'suffix' => $_POST['suffix'],
   'date' => date("Y_m_d"),
   'text' => $_POST['text'],
+  'number_of_comments' => 0,
   'comments' => ""
 );
 
 
 $article = json_encode($data);
-$filename = 'articles/' . $data['date'] . '_' . $data['url'] . '.json';
+$filename = 'articles/' . $data['suffix'] . '.json';
 $fp = fopen($filename, 'w');
 fwrite($fp, $article);
 fclose($fp);

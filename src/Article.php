@@ -3,7 +3,7 @@
 class Article
 {
   private $title = null;
-  private $url = null;
+  private $suffix = null;
   private $date = null;
   private $text = null;
   private $comments = null;
@@ -22,9 +22,14 @@ class Article
     return $instance;
   }
 
-  public function getUrl()
+  public function getSuffix()
   {
-    return "/posts.php?url=" . $this->date . "_" . $this->url;
+    return "/posts.php?suffix=" . $this->suffix;
+  }
+
+  public function getNumberOfComments()
+  {
+    //TODO
   }
 
   public function setText($text)
@@ -78,7 +83,7 @@ class Article
             <div class="col-sm-4"><a href="#" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
             </div>
             <div class="col-sm-8">
-            <h3 class="title"> <a href=".' . $this->getUrl() . '">' . $this->title . '</h3></a>
+            <h3 class="title"> <a href=".' . $this->getSuffix() . '">' . $this->title . '</h3></a>
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span>'
               . $this->date . 'July 23, 2014 @ 1:30 PM <span style="float:right"><span class="glyphicon glyphicon-comment"></span> 20</span>
               </p>
@@ -101,7 +106,7 @@ class Article
     //TODO Do error handeling here
     $data = json_decode($file, true);
     $this->title = $data['title'];
-    $this->url = $data['url'];
+    $this->suffix = $data['suffix'];
     $this->date = $data['date'];
     $this->text = $data['text'];
   }
