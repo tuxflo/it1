@@ -26,9 +26,14 @@ class jsonList
       array_push($jsonfiles, $tmparray);
     }
     var_dump($jsonfiles);
-    echo "<br>";
     echo json_encode($jsonfiles);
-    ksort($jsonfiles);
+    echo "<br>";
+    $sortedArray = array();
+    foreach ($jsonfiles as $key => $row)
+    {
+      $sortedArray[$key] = $row['date'];
+    }
+    array_multisort($sortedArray, SORT_ASC, $jsonfiles);
     echo "<br>";
     echo json_encode($jsonfiles);
   }
