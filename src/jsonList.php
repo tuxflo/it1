@@ -6,8 +6,7 @@ class jsonList
   public $articles = null;
   public function __construct()
   {
-    $this->count = 0;
-    $this->updateList();
+    //$this->updateList();
     $tmp = file_get_contents("fileList.json");
     $this->articles = json_decode($tmp, true);
   }
@@ -19,8 +18,22 @@ class jsonList
   
   public function getArticleCount()
   {
-    return $this->count;
+    return count($this->articles);
   }
+
+  public function getArticlePage($page)
+  {
+    //returns the 2 articles in an array that are visible at page $page (returns the latest 2 articles for page 1)
+      $start = count($this->articles) - ($page * 2);
+      $end = 2;
+      if($start < 0)
+      {
+        $start = 0;
+        $end = 1;
+      }
+      return array_slice($this->articles, $start, $end);
+  }
+
   public function updateList()
   {
     $jsonfiles = array();
