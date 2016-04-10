@@ -1,10 +1,11 @@
 <?php
 
 //echo $_POST['text'];
+date_default_timezone_set('Europe/Berlin');
 $data = array(
   'title' => $_POST['title'],
   'suffix' => $_POST['suffix'],
-  'date' => date("Y_m_d"),
+  'date' => time(),
   'text' => $_POST['text'],
   'number_of_comments' => 0,
   'comments' => ""
@@ -16,6 +17,7 @@ $filename = 'articles/' . $data['suffix'] . '.json';
 $fp = fopen($filename, 'w');
 fwrite($fp, $article);
 fclose($fp);
+header("Location: index.php");
 ?>
 
 <?php

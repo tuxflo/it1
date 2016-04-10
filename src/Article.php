@@ -62,8 +62,8 @@ class Article
     <div class="row">
             <div class="col-sm-8">
             <h3 class="title">' . $this->title . '</h3>
-              <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span>'
-              . $this->date . 'July 23, 2014 @ 1:30 PM <span style="float:right"><span class="glyphicon glyphicon-comment"></span> 20</span>
+              <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
+              . $this->date . ' <span style="float:right"><span class="glyphicon glyphicon-comment"></span> 20</span>
               </p>
               <p>' . $this->parsedown->text($this->text) . '</p>
             </div>
@@ -84,8 +84,8 @@ class Article
             </div>
             <div class="col-sm-8">
             <h3 class="title"> <a href=".' . $this->getSuffix() . '">' . $this->title . '</h3></a>
-              <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span>'
-              . $this->date . 'July 23, 2014 @ 1:30 PM <span style="float:right"><span class="glyphicon glyphicon-comment"></span> 20</span>
+              <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
+              . date("F d, Y @ H:i", $this->date) . ' <span style="float:right"><span class="glyphicon glyphicon-comment"></span> 20</span>
               </p>
               <p>' . $this->parsedown->text($preview) . '</p>';
 

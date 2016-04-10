@@ -4,8 +4,8 @@
   $list = new jsonList();
   $list->updateList();
 
-  $first = Article::fromJson("articles/2016_04_05_awesome.json");
-  $second = Article::fromJson("articles/2016_04_05_Some_text.json");
+  $first = Article::fromJson("articles/foobar.json");
+  $second = Article::fromJson("articles/foobar.json");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,66 +35,50 @@
           <header>
           <h4>Latest articles:</h4>
           </header>
-            <table>
-            <tr>
-              <th>Title</th>
-              <th>Date</th>	
-            </tr>
-            <tr>
-              <td>Test_Post 1</td>	
-              <td>2016-01-13</td>	
-            </tr>
-            <tr>
-              <td>Test_Post 2</td>
-              <td>2016-01-13</td>
-            </tr>
-            <tr>
-              <td>Test_Post 3</td>	
-              <td>2016-01-13</td>	
-            </tr>
-            <tr>
-              <td>Test_Post 4</td>	
-              <td>2016-01-13</td>	
-            </tr>
-            <tr>
-              <td>Test_Post 5</td>	
-              <td>2016-01-13</td>	
-            </tr>
-            <tr>
-              <td>Test_Post 6</td>	
-              <td>2016-01-13</td>	
-            </tr>
-            <tr>
-              <td>Test_Post 7</td>	
-              <td>2016-01-13</td>	
-            </tr>
-            <tr>
-              <td>Test_Post 8</td>	
-              <td>2016-01-13</td>	
-            </tr>
-            <tr>
-              <td>Test_Post 9</td>	
-              <td>2016-01-13</td>	
-            </tr>
-            <tr>
-              <td>Test_Post 10</td>	
-              <td>2016-01-13</td>	
-            </tr>
-          </table>
+
+<ul class="popular-posts list-unstyled">
+<?php
+  $tmp = $list->getArray();
+  foreach($tmp as $article)
+  {
+    echo '<li class="row">
+                            <div class="col-md-3">
+		                    <a class="thumbnail" href="#"><img src="//placehold.it/75x75" alt="Popular Post"></a>
+                            </div>
+                            <div class="col-md-9"> 
+		                    <p class="pull-right"><a href="posts?suffix=' . $article['suffix'] . '">' . $article['title'] . '</a></p>
+                            <em class="small">Posted on '. date("Y-m-d", $article['date']) . '</em>
+                            </div>
+		                </li>';
+  }
+?>
+</ul>
         </div>
       </div>
       
     </div>
     <div class="col-md-9">
-      <hr>
-      <?php echo $first->getPreview(); ?>
-      <hr>
-      <?php echo $second->getPreview(); ?>
-      <hr>
-
+<?php
+  if(! $list->getArticleCount())
+    echo "No Articles click New Post to create one";
+  else
+  {
+    echo $first->getPreview();
+    echo "<hr>";
+    echo $second->getPreview();
+    echo "<hr>";
+  }
+?>
       <ul class="pagination pagination-lg pull-right">
-        <li><a href="#">« Older Posts</a></li>
-        <li class="active"><a href="#">1</a></li>
+<?php
+for($i=1; $i<$list->getArticleCount() /2; $i++)
+{
+  if(! isset($_GET['site']))
+    echo '<li class="active"><a href="#">' .$i . '</a></li>';
+  else
+    echo '<li><a href="#">' . $i . '</a></li>';
+}
+?>
       </ul>
     </div> <!-- col-md-9 --!>
   </div>
