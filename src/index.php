@@ -1,11 +1,20 @@
 <?php
+  if(isset($_GET['page']))
+    echo $_GET['page'];
   require_once("Article.php");
   require_once("jsonList.php");
   $list = new jsonList();
   $list->updateList();
 
-  $first = Article::fromJson("articles/foobar.json");
-  $second = Article::fromJson("articles/foobar.json");
+  if(isset($_GET['page']))
+  {
+    $articles = $list->getArticlePage($_GET['page']);
+  }
+  else
+    $articles = $list->getArticlePage(1);
+
+  //$first = Article::fromJson("articles/" . array_shift($articles)['suffix'] . ".json");
+  //$second = Article::fromJson("articles/"  . array_shift($articles)['suffix'] . ".json");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,20 +72,25 @@
     echo "No Articles click New Post to create one";
   else
   {
-    echo $first->getPreview();
-    echo "<hr>";
-    echo $second->getPreview();
-    echo "<hr>";
+    foreach($articles as $article)
+    {
+    $filename = "articles/" . array_pop($articles)['suffix'] . ".json";
+    $tmp = Article::fromJson($filename);
+      echo $tmp->getPreview();
+      echo "<hr>";
+    }
   }
 ?>
       <ul class="pagination pagination-lg pull-right">
 <?php
-for($i=1; $i<$list->getArticleCount() /2; $i++)
+for($i=1; $i<($list->getArticleCount() /2) +1; $i++)
 {
-  if(! isset($_GET['site']))
-    echo '<li class="active"><a href="#">' .$i . '</a></li>';
+  if(!isset($_GET['page']) && $i == 1)
+    echo '<li class="active"><a href="?page=' . $i . '">' .$i . '</a></li>';
+  else if($_GET['page'] == $i)
+    echo '<li class="active"><a href="?page=' . $i . '">' . $i . '</a></li>';
   else
-    echo '<li><a href="#">' . $i . '</a></li>';
+    echo '<li><a href="?page=' . $i . '">' . $i . '</a></li>';
 }
 ?>
       </ul>
