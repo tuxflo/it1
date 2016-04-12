@@ -63,7 +63,7 @@ class Article
             <div class="col-sm-8">
             <h3 class="title">' . $this->title . '</h3>
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
-              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20<a href="/newpost.php?edit=1&suffix=' . $this->getSuffix() . '"<span style="float:right"><span class="glyphicon glyphicon-edit"></span> Edit Post</span></a>
+              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20<a href="./newpost.php?edit=1&suffix=' . $this->getSuffix() . '"<span style="float:right"><span class="glyphicon glyphicon-edit"></span> Edit Post</span></a>
               </p>
               <p>' . $this->parsedown->text($this->text) . '</p>
             </div>

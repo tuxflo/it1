@@ -77,7 +77,8 @@
   {
     foreach($articles as $article)
     {
-    $filename = "articles/" . array_pop($articles)['suffix'] . ".json";
+      $a = array_pop($articles);
+    $filename = "articles/" . $a['suffix'] . ".json";
     $tmp = Article::fromJson($filename);
       echo $tmp->getPreview();
       echo "<hr>";
