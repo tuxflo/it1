@@ -1,85 +1,104 @@
+<?php
+  require_once("Article.php");
+  require_once("jsonList.php");
+  $list = new jsonList();
+  $list->updateList();
+
+  $pagenumber = 1;
+  if(isset($_GET['page']))
+    $pagenumber = $_GET['page'];
+
+  if($pagenumber > $list->getArticleCount())
+  {
+    echo '<div class="container">
+      <div class="alert alert-warning">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Warning!</strong> Invalid page value: ' . $pagenumber . ', redirecting to page 1.
+      </div>';
+    $pagenumber = 1;
+  }
+  $articles = $list->getArticlePage($pagenumber);
+
+  //$first = Article::fromJson("articles/" . array_shift($articles)['suffix'] . ".json");
+  //$second = Article::fromJson("articles/"  . array_shift($articles)['suffix'] . ".json");
+?>
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Beleg für das Modul Internettechnologien 1">
-    <meta name="author" content="Florian Hennig und Jana Will">
-
-    <title>The next generation Blog engine</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/logo-nav.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
+<?php include("head.html"); ?>
 <body>
-
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="http://placehold.it/150x50&text=Logo" alt="">
-                </a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Home</a>
-                    </li>
-                    <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">New Post</a></li>
-                      <li><a href="#">Edit Post</a></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="#">Upload Images</a></li>
-                    </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
+<?php include("nav.html"); ?>
     <!-- Page Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>The next generation Blog engine</h1>
-                <p>Just 14 steps to get a grade 1</p>
-            </div>
-        </div>
+<div class="row-fluid top30 pagetitle">
+  
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-md-12"><h1>Latest Posts</h1></div>
     </div>
-    <!-- /.container -->
+    
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      
+      <div class="hidden-sm hidden-xs">
+        <div class="well">
+          
+          <header>
+          <h4>Latest articles:</h4>
+          </header>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
+<ul class="sidebar list-unstyled">
+<?php
+  $tmp = $list->getArray();
+  foreach($tmp as $article)
+  {
+    echo '<li class="row">
+                            <div class="col-md-9"> 
+		                    <p class="pull-right"><a href="posts?suffix=' . $article['suffix'] . '">' . $article['title'] . '</a></p>
+                            <em class="small">Posted on '. date("Y-m-d", $article['date']) . '</em>
+                            </div>
+		                </li>';
+  }
+?>
+</ul>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-md-9">
+<?php
+  if(! $list->getArticleCount())
+    echo "No Articles click New Post to create one";
+  else
+  {
+    foreach($articles as $article)
+    {
+    $filename = "articles/" . array_pop($articles)['suffix'] . ".json";
+    $tmp = Article::fromJson($filename);
+      echo $tmp->getPreview();
+      echo "<hr>";
+    }
+  }
+?>
+      <ul class="pagination pagination-lg pull-right">
+<?php
+for($i=1; $i<($list->getArticleCount() /2) +1; $i++)
+{
+  if($pagenumber == $i)
+    echo '<li class="active"><a href="?page=' . $i . '">' . $i . '</a></li>';
+  else
+    echo '<li><a href="?page=' . $i . '">' . $i . '</a></li>';
+}
+?>
+      </ul>
+    </div> <!-- col-md-9 --!>
+  </div>
+</div>
+<?php include("foot_include.html"); ?>
 </body>
 
 </html>
