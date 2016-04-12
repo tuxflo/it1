@@ -10,7 +10,7 @@
     <div class="form-group has-error ">
       <label class="control-label col-sm-2" for="suffix">Suffix:</label>
       <div class="col-sm-10">
-        <input type="text" pattern="[a-z].{3}*" required title="only lowercase letters are allowed as Suffix" class="form-control" id="suffix" name="suffix" value="foobar" disabled>
+      <input type="text" pattern="[a-z].{3}*" required title="only lowercase letters are allowed as Suffix" class="form-control" id="suffix" name="suffix" placeholder="Enter suffix" <?php if($edit) echo 'value="' . $article->getSuffix() . '" disabled'?>>
 <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 <span id="suffix-result"></span>
       </div>

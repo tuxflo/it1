@@ -1,4 +1,5 @@
 <?php
+require_once("Article.php");
 $edit = false;
 $article = null;
 if(isset($_GET['edit']))
@@ -6,13 +7,11 @@ if(isset($_GET['edit']))
   if($_GET['edit'] === '1' || $GET['edit'] === '0')
     $edit = (bool) $_GET['edit'];
 }
-if(isset($_GET['suffix']))
+if(isset($_GET['suffix']) && $edit == true)
 {
   $suffix = $_GET['suffix'];
-  $article = Article::fromJson("/articles/" . $suffix . ".json");
-  echo $suffix;
+  $article = Article::fromJson("./articles/" . $suffix . ".json");
 }
-echo $edit ? 'true' : 'false';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,15 +21,18 @@ echo $edit ? 'true' : 'false';
   <?php include("nav.html"); ?>
     <!-- Page Content -->
     <div class="container">
-    <?php include("postinput.html"); ?>
+    <?php include("postinput.php"); ?>
     </div> <!-- /.container -->
 
     <?php include("foot_include.html"); ?>
 <script type="text/javascript">
 var simplemde = new SimpleMDE();
 <?php
-  if($edit)
-    echo 'simplemde.value("' . $article->getText() . '");';
+if($edit)
+{
+    echo 'var text = `' . $article->getText() . '`;';
+    echo 'simplemde.value(text);';
+}
 ?>
 </script>
 

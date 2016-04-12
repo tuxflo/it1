@@ -24,7 +24,7 @@ class Article
 
   public function getSuffix()
   {
-    return "/posts.php?suffix=" . $this->suffix;
+    return $this->suffix;
   }
 
   public function getNumberOfComments()
@@ -56,14 +56,14 @@ class Article
   {
     $row = '
     <div class="row">
-            <div class="col-sm-12"><a href="#" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
+            <div class="col-sm-12"><a href="#" class=""><img src="" class="img-responsive"></a>
             </div>
     </div> <!-- row -->
     <div class="row">
             <div class="col-sm-8">
             <h3 class="title">' . $this->title . '</h3>
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
-              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20<a href="#"<span style="float:right"><span class="glyphicon glyphicon-edit"></span> Edit Post</span></a>
+              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20<a href="/newpost.php?edit=1&suffix=' . $this->getSuffix() . '"<span style="float:right"><span class="glyphicon glyphicon-edit"></span> Edit Post</span></a>
               </p>
               <p>' . $this->parsedown->text($this->text) . '</p>
             </div>
@@ -80,12 +80,12 @@ class Article
 
     $row = '
     <div class="row">
-            <div class="col-sm-4"><a href="#" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
+            <div class="col-sm-4"><a href="#" class=""><img src="" class="img-responsive"></a>
             </div>
             <div class="col-sm-8">
-            <h3 class="title"> <a href=".' . $this->getSuffix() . '">' . $this->title . '</a></h3>
+            <h3 class="title"> <a href="/?suffix=' . $this->getSuffix() . '">' . $this->title . '</a></h3>
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
-              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20<a href="#"<span style="float:right"><span class="glyphicon glyphicon-edit"></span> Edit Post</span></a>
+              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20<a href="/newpost.php?edit=1&suffix=' . $this->getSuffix() . '"<span style="float:right"><span class="glyphicon glyphicon-edit"></span> Edit Post</span></a>
               </p>
               <p>' . $this->parsedown->text($preview) . '</p>';
 
