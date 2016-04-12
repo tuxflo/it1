@@ -56,7 +56,7 @@ class Article
   {
     $row = '
     <div class="row">
-            <div class="col-sm-12"><a href="#" class=""><img src="" class="img-responsive"></a>
+            <div class="col-sm-12"><a href="#" class=""></a>
             </div>
     </div> <!-- row -->
     <div class="row">
@@ -80,9 +80,7 @@ class Article
 
     $row = '
     <div class="row">
-            <div class="col-sm-4"><a href="#" class=""><img src="" class="img-responsive"></a>
-            </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
             <h3 class="title"> <a href="/?suffix=' . $this->getSuffix() . '">' . $this->title . '</a></h3>
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
               . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20<a href="/newpost.php?edit=1&suffix=' . $this->getSuffix() . '"<span style="float:right"><span class="glyphicon glyphicon-edit"></span> Edit Post</span></a>

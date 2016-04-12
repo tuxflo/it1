@@ -26,11 +26,11 @@ if(isset($_GET['suffix']) && $edit == true)
 
     <?php include("foot_include.html"); ?>
 <script type="text/javascript">
-var simplemde = new SimpleMDE();
+var simplemde = new SimpleMDE({ element: $("#markdown")[0] });
 <?php
 if($edit)
 {
-    echo 'var text = `' . $article->getText() . '`;';
+    echo 'var text = ' . json_encode($article->getText()) . ';';
     echo 'simplemde.value(text);';
 }
 ?>

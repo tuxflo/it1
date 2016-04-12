@@ -57,9 +57,6 @@
   foreach($tmp as $article)
   {
     echo '<li class="row">
-                            <div class="col-md-3">
-		                    <a class="thumbnail" href="#"><img src="//placehold.it/75x75" alt="Popular Post"></a>
-                            </div>
                             <div class="col-md-9"> 
 		                    <p class="pull-right"><a href="posts?suffix=' . $article['suffix'] . '">' . $article['title'] . '</a></p>
                             <em class="small">Posted on '. date("Y-m-d", $article['date']) . '</em>
