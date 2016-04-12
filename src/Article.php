@@ -63,7 +63,7 @@ class Article
             <div class="col-sm-8">
             <h3 class="title">' . $this->title . '</h3>
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
-              . $this->date . ' <span style="float:right"><span class="glyphicon glyphicon-comment"></span> 20</span>
+              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20<a href="#"<span style="float:right"><span class="glyphicon glyphicon-edit"></span> Edit Post</span></a>
               </p>
               <p>' . $this->parsedown->text($this->text) . '</p>
             </div>
@@ -83,16 +83,16 @@ class Article
             <div class="col-sm-4"><a href="#" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
             </div>
             <div class="col-sm-8">
-            <h3 class="title"> <a href=".' . $this->getSuffix() . '">' . $this->title . '</h3></a>
+            <h3 class="title"> <a href=".' . $this->getSuffix() . '">' . $this->title . '</a></h3>
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
-              . date("F d, Y @ H:i", $this->date) . ' <span style="float:right"><span class="glyphicon glyphicon-comment"></span> 20</span>
+              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20<a href="#"<span style="float:right"><span class="glyphicon glyphicon-edit"></span> Edit Post</span></a>
               </p>
               <p>' . $this->parsedown->text($preview) . '</p>';
 
               //check if "read more" link is necessary
               if(count($tmp) > 15)
               {
-              $row .= '<p class="text-muted"><a href="#">Read more...</a></p>';
+              $row .= '<p class="text-muted" style="float:right"><a href="#">Read more...</a></p>';
               }
               $row .= '
             </div>

@@ -1,17 +1,23 @@
 <?php
-  if(isset($_GET['page']))
-    echo $_GET['page'];
   require_once("Article.php");
   require_once("jsonList.php");
   $list = new jsonList();
   $list->updateList();
 
+  $pagenumber = 1;
   if(isset($_GET['page']))
+    $pagenumber = $_GET['page'];
+
+  if($pagenumber > $list->getArticleCount())
   {
-    $articles = $list->getArticlePage($_GET['page']);
+    echo '<div class="container">
+      <div class="alert alert-warning">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Warning!</strong> Invalid page value: ' . $pagenumber . ', redirecting to page 1.
+      </div>';
+    $pagenumber = 1;
   }
-  else
-    $articles = $list->getArticlePage(1);
+  $articles = $list->getArticlePage($pagenumber);
 
   //$first = Article::fromJson("articles/" . array_shift($articles)['suffix'] . ".json");
   //$second = Article::fromJson("articles/"  . array_shift($articles)['suffix'] . ".json");
@@ -45,7 +51,7 @@
           <h4>Latest articles:</h4>
           </header>
 
-<ul class="popular-posts list-unstyled">
+<ul class="sidebar list-unstyled">
 <?php
   $tmp = $list->getArray();
   foreach($tmp as $article)
@@ -85,9 +91,7 @@
 <?php
 for($i=1; $i<($list->getArticleCount() /2) +1; $i++)
 {
-  if(!isset($_GET['page']) && $i == 1)
-    echo '<li class="active"><a href="?page=' . $i . '">' .$i . '</a></li>';
-  else if($_GET['page'] == $i)
+  if($pagenumber == $i)
     echo '<li class="active"><a href="?page=' . $i . '">' . $i . '</a></li>';
   else
     echo '<li><a href="?page=' . $i . '">' . $i . '</a></li>';

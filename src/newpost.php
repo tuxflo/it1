@@ -1,3 +1,19 @@
+<?php
+$edit = false;
+$article = null;
+if(isset($_GET['edit']))
+{
+  if($_GET['edit'] === '1' || $GET['edit'] === '0')
+    $edit = (bool) $_GET['edit'];
+}
+if(isset($_GET['suffix']))
+{
+  $suffix = $_GET['suffix'];
+  $article = Article::fromJson("/articles/" . $suffix . ".json");
+  echo $suffix;
+}
+echo $edit ? 'true' : 'false';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <?php include("head.html"); ?>
@@ -12,6 +28,10 @@
     <?php include("foot_include.html"); ?>
 <script type="text/javascript">
 var simplemde = new SimpleMDE();
+<?php
+  if($edit)
+    echo 'simplemde.value("' . $article->getText() . '");';
+?>
 </script>
 
 <script type="text/javascript">

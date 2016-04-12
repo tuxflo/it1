@@ -1,11 +1,9 @@
 <?php
   require_once("Article.php");
-   if($_GET["url"]) {
-      $filename = './articles/' . $_GET['url'] . '.json';
+   if($_GET["suffix"]) {
+      $filename = './articles/' . $_GET['suffix'] . '.json';
       $test = Article::fromJson($filename);
    }
-  $first = Article::fromJson("articles/2016_04_05_awesome.json");
-  $second = Article::fromJson("articles/2016_04_05_Some_text.json");
 ?>
 <!DOCTYPE html>
 <html lang="en">
