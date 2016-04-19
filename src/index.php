@@ -8,7 +8,7 @@
   if(isset($_GET['page']))
     $pagenumber = $_GET['page'];
 
-  if($pagenumber > $list->getArticleCount())
+  if($pagenumber > $list->getArticleCount() + 1)
   {
     echo '<div class="container">
       <div class="alert alert-warning">
@@ -58,7 +58,7 @@
   {
     echo '<li class="row">
                             <div class="col-md-9"> 
-		                    <p class="pull-right"><a href="posts?suffix=' . $article['suffix'] . '">' . $article['title'] . '</a></p>
+		                    <p class="pull-right"><a href="posts.php?suffix=' . $article['suffix'] . '">' . $article['title'] . '</a></p>
                             <em class="small">Posted on '. date("Y-m-d", $article['date']) . '</em>
                             </div>
 		                </li>';
@@ -77,7 +77,8 @@
   {
     foreach($articles as $article)
     {
-    $filename = "articles/" . array_pop($articles)['suffix'] . ".json";
+      $a = array_pop($articles);
+    $filename = "articles/" . $a['suffix'] . ".json";
     $tmp = Article::fromJson($filename);
       echo $tmp->getPreview();
       echo "<hr>";

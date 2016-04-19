@@ -55,18 +55,21 @@ class Article
   public function getArticle()
   {
     $row = '
-    <div class="row">
-            <div class="col-sm-12"><a href="#" class=""></a>
-            </div>
-    </div> <!-- row -->
-    <div class="row">
-            <div class="col-sm-8">
             <h3 class="title">' . $this->title . '</h3>
-              <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
-              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20<a href="/newpost.php?edit=1&suffix=' . $this->getSuffix() . '"<span style="float:right"><span class="glyphicon glyphicon-edit"></span> Edit Post</span></a>
+            <div class="row">
+              <div class="col-sm-4">
+              <p class="text-muted">
+                <span class="glyphicon glyphicon-calendar"></span> '
+              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20
               </p>
+              </div>
+              <div class="col-sm-4 col-sm-push-5">
+                <a href="/newpost.php?edit=1&suffix=' . $this->getSuffix() . '"><span class="glyphicon glyphicon-edit"></span> Edit Post</a>
+                <a href="#" data-record-id="' . $this->getSuffix() . '" data-record-title="' . $this->getTitle() . '" data-toggle="modal" data-target="#confirm-delete">
+                  <span class="glyphicon glyphicon-remove-sign"></span> Delete Post</a>
+              </div>
+              </div>
               <p>' . $this->parsedown->text($this->text) . '</p>
-            </div>
           </div>';
     return $row;
   }
@@ -81,7 +84,7 @@ class Article
     $row = '
     <div class="row">
             <div class="col-sm-12">
-            <h3 class="title"> <a href="/?suffix=' . $this->getSuffix() . '">' . $this->title . '</a></h3>
+            <h3 class="title"> <a href="/posts.php?suffix=' . $this->getSuffix() . '">' . $this->title . '</a></h3>
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
               . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20<a href="/newpost.php?edit=1&suffix=' . $this->getSuffix() . '"<span style="float:right"><span class="glyphicon glyphicon-edit"></span> Edit Post</span></a>
               </p>
@@ -90,7 +93,7 @@ class Article
               //check if "read more" link is necessary
               if(count($tmp) > 15)
               {
-              $row .= '<p class="text-muted" style="float:right"><a href="#">Read more...</a></p>';
+                $row .= '<p class="text-muted" style="float:right"><a href="/posts.php?suffix=' . $this->getSuffix() . '">Read more...</a></p>';
               }
               $row .= '
             </div>
