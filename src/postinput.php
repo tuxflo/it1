@@ -23,7 +23,6 @@ else
         echo 'required title="only lowercase letters with minimun length of 3"';
 ?>>
 
-<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 <span id="suffix-result"></span>
       </div>
     </div>

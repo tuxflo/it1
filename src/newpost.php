@@ -35,10 +35,21 @@ if($edit)
 }
 ?>
 </script>
+<script>
+jQuery.fn.extend({
+    disable: function(state) {
+        return this.each(function() {
+            var $this = $(this);
+            $this.toggleClass('disabled', state);
+        });
+    }
+});
+</script>
 
 <script type="text/javascript">
 $(document).ready(function() {
     var x_timer;
+    $("#submit").disable(true);
     $("#suffix").keyup(function (e){
         clearTimeout(x_timer);
         var suffix = $(this).val();
@@ -52,8 +63,14 @@ function check_file_exists_ajax(suffix){
       $("#suffix-result").html(data);
       if(data != ''){
         $("#suffix-form").addClass('has-feedback has-error');
+        $("#submit").disable(true);
       }
-      $("#suffix-form").addClass('has-feedback has-success');
+      else
+      {
+        $("#suffix-form").removeClass('has-feedback has-error');
+        $("#suffix-form").addClass('has-feedback has-success');
+        $("#submit").disable(false);
+      }
     });
 }
 });

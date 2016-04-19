@@ -1,5 +1,6 @@
 <?php
   require_once("Article.php");
+  require_once("sidebar.php");
    if($_GET["suffix"]) {
       $filename = './articles/' . $_GET['suffix'] . '.json';
       $test = Article::fromJson($filename);
@@ -24,10 +25,9 @@
   </div>
 </div>
 <div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      
-    </div>
+<?php
+  getSidebar();
+?>
     <div class="col-md-9">
       <?php echo $test->getArticle(); ?>
     </div>
@@ -39,7 +39,7 @@
                     <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
                 </div>
                 <div class="modal-body">
-                    <p>You are about to delete <b><i class="title"></i></b> record, this procedure is irreversible.</p>
+                    <p>You are about to delete the post <b><i class="title"></i></b>, this procedure is irreversible.</p>
                     <p>Do you want to proceed?</p>
                 </div>
                 <div class="modal-footer">
