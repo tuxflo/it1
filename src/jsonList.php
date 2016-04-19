@@ -18,7 +18,7 @@ class jsonList
   
   public function getArticleCount()
   {
-    return count($this->articles);
+    return count($this->articles)/2;
   }
 
   public function getArticlePage($page)

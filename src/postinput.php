@@ -13,10 +13,16 @@ else
 ?>
       </div>
     </div>
-    <div class="form-group has-error ">
+    <div id="suffix-form" class="form-group">
       <label class="control-label col-sm-2" for="suffix">Suffix:</label>
       <div class="col-sm-10">
-      <input type="text" pattern="[a-z].{3}*" required title="only lowercase letters are allowed as Suffix" class="form-control" id="suffix" name="suffix" placeholder="Enter suffix" <?php if($edit) echo 'value="' . $article->getSuffix() . '" readonly'?>>
+      <input type="text" pattern="[a-z].{3}*" class="form-control" id="suffix" name="suffix" placeholder="Enter suffix"
+<?php if($edit)
+        echo 'value="' . $article->getSuffix() . '" readonly required title="suffix is immutable in edit mode"';
+      else
+        echo 'required title="only lowercase letters with minimun length of 3"';
+?>>
+
 <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
 <span id="suffix-result"></span>
       </div>

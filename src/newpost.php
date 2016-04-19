@@ -39,18 +39,21 @@ if($edit)
 <script type="text/javascript">
 $(document).ready(function() {
     var x_timer;
-    $("#url").keyup(function (e){
+    $("#suffix").keyup(function (e){
         clearTimeout(x_timer);
-        var url = $(this).val();
+        var suffix = $(this).val();
         x_timer = setTimeout(function(){
-            check_file_exists_ajax(url);
+            check_file_exists_ajax(suffix);
         }, 1000);
     });
 
-function check_file_exists_ajax(url){
-    $("#url-result").html('Name already taken');
-    $.post('file-checker.php', {'url':url}, function(data) {
-      $("#url-result").html(data);
+function check_file_exists_ajax(suffix){
+    $.post('file-checker.php', {'suffix':suffix}, function(data) {
+      $("#suffix-result").html(data);
+      if(data != ''){
+        $("#suffix-form").addClass('has-feedback has-error');
+      }
+      $("#suffix-form").addClass('has-feedback has-success');
     });
 }
 });
