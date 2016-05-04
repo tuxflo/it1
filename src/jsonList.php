@@ -18,7 +18,7 @@ class jsonList
   
   public function getArticleCount()
   {
-    return count($this->articles)/2;
+    return count($this->articles);
   }
 
   public function getArticlePage($page)
@@ -57,6 +57,8 @@ class jsonList
     }
     array_multisort($sortedArray, SORT_ASC, $jsonfiles);
     $this->articles = $jsonfiles;
+    $fh = fopen("fileList.json", 'w');
+    fwrite($fh, json_encode($jsonfiles));
     //echo json_encode($jsonfiles);
   }
 

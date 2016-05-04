@@ -8,7 +8,7 @@
   if(isset($_GET['page']))
     $pagenumber = $_GET['page'];
 
-  if($pagenumber > $list->getArticleCount() || $pagenumber <= 0)
+  if($pagenumber > $list->getArticleCount() + 1)
   {
     echo '<div class="container">
       <div class="alert alert-warning">
