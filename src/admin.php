@@ -72,7 +72,7 @@
     <div class="col-md-9">
 <?php
   if(! $list->getArticleCount())
-    echo "No Articles right now...";
+    echo "No Articles click New Post to create one";
   else
   {
     foreach($articles as $article)
@@ -80,7 +80,7 @@
       $a = array_pop($articles);
     $filename = "articles/" . $a['suffix'] . ".json";
     $tmp = Article::fromJson($filename);
-      echo $tmp->getPreview();
+      echo $tmp->getAdminPreview();
       echo "<hr>";
     }
   }
