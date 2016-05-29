@@ -38,7 +38,7 @@
                 $fname = preg_replace("/[^a-zA-Z0-9_-]/", "", $fname); 
                 $path = "img/" . $fname . $type;
                 
-                $count = 0;
+                $count = 2;
                 while (file_exists($path)){
                     $tmp = $fname . $count;
                     $path = "img/" . $tmp . $type;
@@ -72,21 +72,23 @@
     <!-- Page Content -->
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <?php 
-                    $sidebar = new Sidebar();
-                    $sidebar->getAdminSidebar(); 
-                ?>
-            </div>
+            <?php 
+                $sidebar = new Sidebar();
+                $sidebar->getSidebar(); 
+            ?>
 
             <div class="col-md-9">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post" enctype="multipart/form-data">
-                    <div class="input-group">
-                        <!--<input type="hidden" name="MAX_FILE_SIZE" value="2000000" /> -->
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" class="form-inline" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="2000000" /> 
                         <input type="file" name="f" />
-                        <input class="btn btn-primary" type="submit" value="Upload" />
                     </div>
+                    <div class="form-group">
+                        <input class="btn btn-primary pull-right" type="submit" value="Upload" />
+                    </div>
+                    <br/>
                 </form>
+                <br/>
             </div>
 
             <div class="col-md-9">
@@ -100,13 +102,13 @@
                 <div class="col-md-3" id="$filename[1]">
                     <div class="thumbnail">
                         <img src="$img" width="150px" heigth="120px" alt="$img">
-                        <div class="caption">
-                            <p>$filename[1]</p>
-                            <form action="$tmp" method="post" enctype="multipart/form-data" onsubmit="return checkDelete('$filename[1]')">
+                        <form action="$tmp" method="post" enctype="multipart/form-data" onsubmit="return checkDelete('$filename[1]')">
+                            <div class="text-center">$filename[1]</div>
+                            <div class="form-group">
                                 <input type="hidden" name="img" value="$img" />
-                                <input class="btn btn-primary" type="submit" name="_DELETE" value="Delete"/>
-                            </form>
-                        </div>
+                                <input class="btn btn-primary center-block" type="submit" name="_DELETE" value="Delete"/>
+                            </div>
+                        </form>
                     </div>  <!-- thumbnail -->
                 </div> <!-- col -->
 HEREDOC;

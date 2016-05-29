@@ -1,6 +1,7 @@
 <?php
 // for heredoc explanation see http://blog.nazdrave.net/?p=626
 require_once("jsonList.php");
+
 class Sidebar
 {
 
@@ -14,6 +15,7 @@ class Sidebar
           <h4>Latest articles:</h4>
           </header>
           <ul class="sidebar list-unstyled">
+
 HEREDOC1;
     $date_func = "date";
     date_default_timezone_set("UTC");
@@ -27,7 +29,8 @@ HEREDOC1;
                 <p class="pull-right"><a href="posts.php?suffix={$article['suffix']}">{$article['title']}</a></p>
                 <em class="small">Posted on {$date_func("Y-m-d", $article['date'])}</em>
               </div>
-            </li>';
+            </li>
+
 HEREDOC2;
     }
     echo <<<HEREDOC3
