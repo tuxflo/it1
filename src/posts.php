@@ -1,10 +1,17 @@
 <?php
   require_once("Article.php");
   require_once("sidebar.php");
+  require_once("jsonList.php");
    if($_GET["suffix"]) {
       $filename = './articles/' . $_GET['suffix'] . '.json';
       $test = Article::fromJson($filename);
    }
+  $admin = 0;
+  if(isset($_GET['admin']))
+  {
+    if($_GET['admin'] === '1' || $GET['admin'] === '0')
+      $admin = (bool) $_GET['admin'];
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,10 +33,14 @@
 </div>
 <div class="container">
 <?php
-  getSidebar();
+  $sidebar = new Sidebar();
+  if(admin)
+    $sidebar->getAdminSidebar();
+  else
+    $sidebar->getSidebar();
 ?>
     <div class="col-md-9">
-      <?php echo $test->getArticle(); ?>
+      <?php echo $test->getArticle($admin); ?>
     </div>
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

@@ -1,6 +1,7 @@
 <?php
   require_once("Article.php");
   require_once("jsonList.php");
+  require_once("sidebar.php");
   $list = new jsonList();
   $list->updateList();
 
@@ -42,33 +43,10 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      
-      <div class="hidden-sm hidden-xs">
-        <div class="well">
-          
-          <header>
-          <h4>Latest articles:</h4>
-          </header>
-
-<ul class="sidebar list-unstyled">
 <?php
-  $tmp = $list->getArray();
-  foreach($tmp as $article)
-  {
-    echo '<li class="row">
-                            <div class="col-md-9"> 
-		                    <p class="pull-right"><a href="posts.php?suffix=' . $article['suffix'] . '">' . $article['title'] . '</a></p>
-                            <em class="small">Posted on '. date("Y-m-d", $article['date']) . '</em>
-                            </div>
-		                </li>';
-  }
+  $sidebar = new Sidebar();
+  $sidebar->getSidebar();
 ?>
-</ul>
-        </div>
-      </div>
-      
-    </div>
     <div class="col-md-9">
 <?php
   if(! $list->getArticleCount())

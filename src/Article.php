@@ -52,7 +52,7 @@ class Article
     return $this->title;
   }
 
-  public function getArticle()
+  public function getArticle($admin)
   {
     $row = '
             <h3 class="title">' . $this->title . '</h3>
@@ -62,20 +62,21 @@ class Article
                 <span class="glyphicon glyphicon-calendar"></span> '
               . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20
               </p>
-              </div>
-              <div class="col-sm-4 col-sm-push-5">
-                <a href="/newpost.php?edit=1&suffix=' . $this->getSuffix() . '"><span class="glyphicon glyphicon-edit"></span> Edit Post</a>
+              </div>';
+    if($admin == true)
+             $row .= '<div class="col-sm-4 col-sm-push-5">
+                <a href="/newpost.php?edit=1&suffix=' . $this->getSuffix() . '">
+                <span class="glyphicon glyphicon-edit"></span> Edit Post</a>
                 <a href="#" data-record-id="' . $this->getSuffix() . '" data-record-title="' . $this->getTitle() . '" data-toggle="modal" data-target="#confirm-delete">
-                  <span class="glyphicon glyphicon-remove-sign"></span> Delete Post</a>
-              </div>
-              </div>
+                 <span class="glyphicon glyphicon-remove-sign"></span> Delete Post</a></div>';
+            $row .= '</div>
               <p>' . $this->parsedown->text($this->text) . '</p>
           </div>';
     return $row;
   }
 
   //return the first 16 lines of the article text
-  public function getPreview()
+  public function getPreview($admin)
   {
     $tmp = explode("\n", $this->text);
     $tmp = array_slice($tmp, 0, 16);
@@ -84,7 +85,11 @@ class Article
     $row = '
     <div class="row">
             <div class="col-sm-12">
-            <h3 class="title"> <a href="posts.php?suffix=' . $this->getSuffix() . '">' . $this->title . '</a></h3>
+            <h3 class="title"> <a href="posts.php?suffix=' . $this->getSuffix();
+    if($admin == true)
+      $row .= "&admin=1";
+    
+    $row .= '">' . $this->title . '</a></h3>
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
               . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20
               </p>
