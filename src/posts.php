@@ -66,7 +66,7 @@
 <div class="container">
 <?php
   $sidebar = new Sidebar();
-  if(admin)
+  if($admin)
     $sidebar->getAdminSidebar();
   else
     $sidebar->getSidebar();

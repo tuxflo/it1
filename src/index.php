@@ -1,6 +1,7 @@
 <?php
   require_once("Article.php");
   require_once("jsonList.php");
+  require_once("sidebar.php");
   date_default_timezone_set("UTC");
   $list = new jsonList();
   $list->updateList();
@@ -58,7 +59,7 @@
       $a = array_pop($articles);
     $filename = "articles/" . $a['suffix'] . ".json";
     $tmp = Article::fromJson($filename);
-      echo $tmp->getPreview();
+      echo $tmp->getPreview(false);
       echo "<hr>";
     }
   }
