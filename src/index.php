@@ -1,7 +1,7 @@
 <?php
   require_once("Article.php");
   require_once("jsonList.php");
-  require_once("sidebar.php");
+  date_default_timezone_set("UTC");
   $list = new jsonList();
   $list->updateList();
 

@@ -54,6 +54,7 @@ class Article
 
   public function getArticle($admin)
   {
+    date_default_timezone_set("UTC");
     $row = '
             <h3 class="title">' . $this->title . '</h3>
             <div class="row">
@@ -82,6 +83,7 @@ class Article
     $tmp = array_slice($tmp, 0, 16);
     $preview = implode("\n", $tmp);
 
+    date_default_timezone_set("UTC");
     $row = '
     <div class="row">
             <div class="col-sm-12">
@@ -108,6 +110,7 @@ class Article
 
   public function getAdminPreview()
   {
+    date_default_timezone_set("UTC");
     $tmp = explode("\n", $this->text);
     $tmp = array_slice($tmp, 0, 16);
     $preview = implode("\n", $tmp);
