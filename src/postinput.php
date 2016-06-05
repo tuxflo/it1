@@ -1,32 +1,32 @@
 <div class="row">
-            <div class="col-lg-12">
-  <form action="save.php" method="POST" class="form-horizontal" role="form">
-    <div class="form-group">
-      <label class="control-label text-left col-sm-2" for="title">Title:</label>
-      <div class="col-sm-10">
-      <input type="text" class="form-control text-left" name="title" id="title"
-<?php
-if($edit)
-  echo ' value="' . $article->getTitle() . '" >';
-else
-  echo 'placeholder="Enter title">';
-?>
-      </div>
-    </div>
-    <div id="suffix-form" class="form-group">
-      <label class="control-label col-sm-2" for="suffix">Suffix:</label>
-      <div class="col-sm-10">
-      <input type="text" pattern="[a-z]{3,}" title="Invalid suffix" class="form-control" id="suffix" name="suffix" placeholder="Enter suffix"
-<?php if($edit)
-        echo 'value="' . $article->getSuffix() . '" readonly required title="suffix is immutable in edit mode"';
-      else
-        echo 'required title="only lowercase letters with minimun length of 3"';
-?>>
+  <div class="col-lg-12">
+    <form action="save.php" method="POST" class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="control-label text-left col-sm-2" for="title">Title:</label>
+          <div class="col-sm-10">
+          <input type="text" class="form-control text-left" name="title" id="title"
+    <?php
+    if($edit)
+      echo ' value="' . $article->getTitle() . '" >';
+    else
+      echo 'placeholder="Enter title">';
+    ?>
+          </div>
+        </div>
+        <div id="suffix-form" class="form-group">
+          <label class="control-label col-sm-2" for="suffix">Suffix:</label>
+          <div class="col-sm-10">
+          <input type="text" pattern="[a-z]{3,}" title="Invalid suffix" class="form-control" id="suffix" name="suffix" placeholder="Enter suffix"
+    <?php if($edit)
+            echo 'value="' . $article->getSuffix() . '" readonly required title="suffix is immutable in edit mode"';
+          else
+            echo 'required title="only lowercase letters with minimun length of 3"';
+    ?>>
 
-<span id="suffix-result"></span>
-      </div>
-    </div>
-<textarea class="col-lg-12" rows="10" name="text" id="markdown">
+          <span id="suffix-result"></span>
+          </div>
+        </div>
+    <textarea class="col-lg-12" rows="10" name="text" id="markdown">
 <?php if(! $edit)
 echo '
 # Intro
@@ -48,8 +48,8 @@ Unordered lists can be started using the toolbar or by typing `* `, `- `, or `+ 
 ## What about images?
 ![Yes](http://i.imgur.com/sZlktY7.png)';
 ?>
-</textarea>
-<input type="submit" value="Save" id="submit" name="submit" class="btn btn-primary pull-right">
-</form>
-            </div>
-        </div>
+    </textarea>
+    <input type="submit" value="Save" id="submit" name="submit" class="btn btn-primary pull-right">
+    </form>
+  </div>
+</div>
