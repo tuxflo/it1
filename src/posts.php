@@ -28,10 +28,11 @@
                                          +"<p>" +comment["content"] +"</p>" 
                                     +"</div>";   
                 $("#comments").prepend(commentHTML);
-                }
+                }else{
                 alert("Invalid form data. Please enter your name, a vaild email address and your comment before submitting.");
                 //$("#comments").prepend(data);
                 //alert("Comment submitted successfully.");
+                }
             }).fail(function(data){
                 alert("Error sending comment.");
             });
