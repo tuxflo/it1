@@ -16,7 +16,7 @@ else
     <div id="suffix-form" class="form-group">
       <label class="control-label col-sm-2" for="suffix">Suffix:</label>
       <div class="col-sm-10">
-      <input type="text" pattern="[a-z].{3}*" class="form-control" id="suffix" name="suffix" placeholder="Enter suffix"
+      <input type="text" pattern="[a-z]{3,}" title="Invalid suffix" class="form-control" id="suffix" name="suffix" placeholder="Enter suffix"
 <?php if($edit)
         echo 'value="' . $article->getSuffix() . '" readonly required title="suffix is immutable in edit mode"';
       else

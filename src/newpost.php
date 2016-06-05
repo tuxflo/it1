@@ -60,13 +60,13 @@ function check_file_exists_ajax(suffix){
       $("#suffix-result").html(data);
       if(data != ''){
         $("#suffix-form").addClass('has-feedback has-error');
-        $("#submit").disable(true);
+        document.getElementById("submit").disabled =true;
       }
       else
       {
         $("#suffix-form").removeClass('has-feedback has-error');
         $("#suffix-form").addClass('has-feedback has-success');
-        $("#submit").disable(false);
+        document.getElementById("submit").disabled = false;
       }
     });
 }

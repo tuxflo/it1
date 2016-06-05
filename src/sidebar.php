@@ -25,8 +25,12 @@ class Sidebar
             include("js/delete.js");
             echo '</script>';
           }
+          $i = 0;
           foreach($tmp as $article)
           {
+            $i++;
+            if($i >= 10)
+              break;
             echo '
             <li class="row">
               <div class="col-md-9">
