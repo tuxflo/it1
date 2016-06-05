@@ -18,7 +18,12 @@ if(isset($_GET['suffix']) && $edit == true)
   <?php include("nav.php"); ?>
     <!-- Page Content -->
     <div class="container">
-    <?php include("postinput.php"); ?>
+        <div class="row">
+            <?php
+                $sidebar->getSidebar(true);
+            ?>
+            <?php include("postinput.php"); ?>
+        </div> 
     </div> <!-- /.container -->
 <?php include("foot_include.html"); ?>
 </body>

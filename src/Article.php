@@ -138,6 +138,10 @@ class Article
     fclose($fp);
   }
 
+  public function getCommentsRaw(){
+    return $this->comments;
+  }
+
   public function getComments(){
     $commentHTML = "";  
 

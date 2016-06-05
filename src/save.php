@@ -1,5 +1,6 @@
 <?php
     require_once("jsonList.php");
+    require_once("Article.php");
 
     if(isset($_POST['suffix'], $_POST['title'], $_POST['suffix'], $_POST['text'] )){
         $suffix = filter_var($_POST["suffix"], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH); 
@@ -23,6 +24,11 @@
             'number_of_comments' => 0,
             'comments' => ""
         );
+    
+        if(file_exists($filename)) {
+            $art = Article::fromJson($filename);
+            $data['comments'] = $art->getCommentsRaw();
+        }
 
         $article = json_encode($data);
         $fp = fopen($filename, 'w');
@@ -33,21 +39,3 @@
         header("Location: index.php");
     }
 ?>
-
-<?php
-require_once './Parsedown.php';
-$Parsedown = new Parsedown();
-
-$string = file_get_contents("$filename");
-$json_a = json_decode($string, true);
-$text = $json_a['text'];
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-
-<body>
-<h1>Todo add save page</h1>
-</body>
-
-</html>
