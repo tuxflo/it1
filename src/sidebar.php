@@ -1,11 +1,33 @@
 <?php
-//include("jsonList.php");
 require_once("jsonList.php");
 class Sidebar
 {
 
   public function getSidebar($admin)
   {
+    if($admin)
+    {
+            echo <<<HEREDOC
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+            </div>
+            <div class="modal-body">
+                <p>You are about to delete the post <b><i class="title"></i></b>, this procedure is irreversible.</p>
+                <p>Do you want to proceed?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger btn-ok">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+HEREDOC;
+    }
     echo '
     <div class="col-md-3">
       <div class="">
@@ -20,10 +42,7 @@ class Sidebar
           if($admin)
           {
             $w = new Warnings();
-            $w->getDeleteConfirmation();
-            echo '<script>';
-            include("js/delete.js");
-            echo '</script>';
+            //$w->getDeleteConfirmation();
           }
           $i = 0;
           foreach($tmp as $article)
