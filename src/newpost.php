@@ -46,7 +46,7 @@ jQuery.fn.extend({
 <script type="text/javascript">
 $(document).ready(function() {
     var x_timer;
-    $("#submit").disable(true);
+    //$("#submit").disable(true);
     $("#suffix").keyup(function (e){
         clearTimeout(x_timer);
         var suffix = $(this).val();
