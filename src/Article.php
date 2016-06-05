@@ -66,7 +66,7 @@ class Article
               </div>';
     if($admin == true)
              $row .= '<div class="col-sm-4 col-sm-push-5">
-                <a href="/newpost.php?edit=1&suffix=' . $this->getSuffix() . '">
+                <a href="./newpost.php?edit=1&suffix=' . $this->getSuffix() . '">
                 <span class="glyphicon glyphicon-edit"></span> Edit Post</a>
                 <a href="#" data-record-id="' . $this->getSuffix() . '" data-record-title="' . $this->getTitle() . '" data-toggle="modal" data-target="#confirm-delete">
                  <span class="glyphicon glyphicon-remove-sign"></span> Delete Post</a></div>';
@@ -87,7 +87,7 @@ class Article
     $row = '
     <div class="row">
             <div class="col-sm-12">
-            <h3 class="title"> <a href="posts.php?suffix=' . $this->getSuffix();
+            <h3 class="title"> <a href="./posts.php?suffix=' . $this->getSuffix();
     //echo "Test";
     if($admin)
       $row .= "&admin=1";
@@ -101,7 +101,7 @@ class Article
               if(count($tmp) > 15)
               {
                 $row .= '
-<p class="text-muted" style="float:right"><a href="/posts.php?suffix=' . $this->getSuffix();
+<p class="text-muted" style="float:right"><a href="./posts.php?suffix=' . $this->getSuffix();
                 if($admin)
                   $row .= "&admin=1";
                 $row .= '">Read more...</a></p>';

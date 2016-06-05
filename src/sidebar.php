@@ -64,7 +64,7 @@ HEREDOC;
             echo ' 
             <div class="col-xs-4">
               <span class="pull-right">
-                <a href="/newpost.php?edit=1&suffix=' . $article['suffix'] . '">
+                <a href="./newpost.php?edit=1&suffix=' . $article['suffix'] . '">
                 <span class="glyphicon glyphicon-edit"></span></a>
                 <a href="#" data-record-id="' . $article['suffix'] . '" data-record-title="' . $article['title'] . '" data-toggle="modal" data-target="#confirm-delete">
                  <span class="glyphicon glyphicon-remove-sign"></span></a>
