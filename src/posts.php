@@ -2,7 +2,7 @@
 <?php include("head.php");
    if(isset($_GET["suffix"])) {
       $filename = './articles/' . htmlentities($_GET['suffix']) . '.json';
-      $test = Article::fromJson($filename);
+      $article = Article::fromJson($filename);
    }
 ?>
 
@@ -27,11 +27,10 @@
                                          +"</h4>"
                                          +"<p>" +comment["content"] +"</p>" 
                                     +"</div>";   
-                $("#comments").prepend(commentHTML);
+                    $("#comments").prepend(commentHTML);
                 }else{
-                alert("Invalid form data. Please enter your name, a vaild email address and your comment before submitting.");
                 //$("#comments").prepend(data);
-                //alert("Comment submitted successfully.");
+                alert("Invalid form data. Please enter your name, a vaild email address and your comment before submitting.");
                 }
             }).fail(function(data){
                 alert("Error sending comment.");
@@ -56,7 +55,7 @@
 <div class="container">
 <?php $sidebar->getSidebar($admin); ?>
     <div class="col-md-9">
-      <?php echo $test->getArticle($admin); ?>
+      <?php echo $article->getArticle($admin); ?>
     </div>
 
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -89,7 +88,7 @@
             <div class="row"> 
                 <div class="col-md-12" style="background-color:whitesmoke; border-radius: 10px;">
                     <!--form action="<?php /*echo htmlentities( $_SERVER['PHP_SELF'] )."?suffix=".htmlentities( $_GET["suffix"] );*/?>" onsubmit="onsubmit()" id="commentForm" method="post" enctype="multipart/form-data" required-->
-                    <form id="commentForm" action="./comment.php?"<?php echo"suffix=" .htmlentities($_GET["suffix"]); ?>       method="post" enctype="multipart/form-data" required>
+                    <form id="commentForm" action="./comment.php?<?php echo "suffix=" .htmlentities($_GET["suffix"]); ?>" method="post" enctype="multipart/form-data" required>
                         <h3>Leave a comment</h3>
                         <div class="row">
                             <div class="col-md-6">
@@ -120,6 +119,7 @@
             <div class="row">
                 <!-- comments start here-->
                 <div class="col-md-12" id="comments">
+                    <?php echo $article->getComments(); ?>
                 </div>
             </div> <!-- end comments row div-->
         </div>

@@ -6,7 +6,7 @@ class Article
   private $suffix = null;
   private $date = null;
   private $text = null;
-  private $comments = null;
+  private $comments = array();
   private $parsedown = null;
 
   public function __construct()
@@ -29,7 +29,10 @@ class Article
 
   public function getNumberOfComments()
   {
-    //TODO
+    if ($this->comments==null)
+      return 0;
+    else
+      return count($this->comments);
   }
 
   public function setText($text)
@@ -61,8 +64,8 @@ class Article
               <div class="col-sm-4">
               <p class="text-muted">
                 <span class="glyphicon glyphicon-calendar"></span> '
-              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20
-              </p>
+              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span>' . $this->getNumberOfComments()
+              .'</p>
               </div>';
     if($admin == true)
              $row .= '<div class="col-sm-4 col-sm-push-5">
@@ -94,8 +97,8 @@ class Article
     
     $row .= '">' . $this->title . '</a></h3>
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
-              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20
-              </p>' . $this->parsedown->text($preview);
+              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span>' . $this->getNumberOfComments()
+              .'</p>' . $this->parsedown->text($preview);
 
               //check if "read more" link is necessary
               if(count($tmp) > 15)
@@ -111,6 +114,43 @@ class Article
           </div>';
     return $row;
   }
+  
+  public function addComment($comment, $filename){
+
+    if ($this->comments==null){
+      $this->comments = array($comment);
+    } 
+    else{
+      // inserts new comment before all other comments 
+      array_unshift($this->comments, $comment);
+    }
+    $data = array(
+      'title' => $this->title,
+      'suffix' =>  $this->suffix,
+      'date' =>  $this->date,
+      'text' =>  $this->text,
+      'number_of_comments' =>  $this->getNumberOfComments(),
+      'comments' =>  $this->comments
+    );
+    $articleJSON = json_encode($data);
+    $fp = fopen($filename, 'w');
+    fwrite($fp, $articleJSON);
+    fclose($fp);
+  }
+
+  public function getComments(){
+    $commentHTML = "";  
+
+    foreach($this->comments as $comment){  
+        $commentHTML = $commentHTML . "<div><h4>" 
+        . $comment["name"] . " " . "<small>" . $comment["date"] . "</small>"
+        . "</h4>"
+        . "<p>" . $comment["content"] . "</p>" 
+        . "</div>";
+    }
+    return $commentHTML;
+  }
+
 
   public function initFromJson($filename)
   {
