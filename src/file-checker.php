@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST["suffix"]))
+if(isset($_POST['suffix']))
 {
   $filename = "./articles/" . filter_var($_POST["suffix"], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH) . ".json";
   if(file_exists($filename)) {
