@@ -1,14 +1,36 @@
 <?php
-//include("jsonList.php");
 require_once("jsonList.php");
 class Sidebar
 {
 
   public function getSidebar($admin)
   {
+    if($admin)
+    {
+            echo <<<HEREDOC
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+            </div>
+            <div class="modal-body">
+                <p>You are about to delete the post <b><i class="title"></i></b>, this procedure is irreversible.</p>
+                <p>Do you want to proceed?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger btn-ok">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+HEREDOC;
+    }
     echo '
     <div class="col-md-3">
-      <div class="hidden-sm hidden-xs">
+      <div class="">
         <div class="well">
 
           <header>
@@ -20,10 +42,7 @@ class Sidebar
           if($admin)
           {
             $w = new Warnings();
-            $w->getDeleteConfirmation();
-            echo '<script>';
-            include("js/delete.js");
-            echo '</script>';
+            //$w->getDeleteConfirmation();
           }
           $i = 0;
           foreach($tmp as $article)
@@ -33,7 +52,7 @@ class Sidebar
               break;
             echo '
             <li class="row">
-              <div class="col-md-9">
+              <div class="col-xs-8">
                 <p><a href="posts.php?suffix=' . $article['suffix'];
               if($admin)
                 echo '&admin=1';
@@ -43,9 +62,13 @@ class Sidebar
               </div>';
             if($admin)
             echo ' 
-            <div class="col-md-3">
-             <span class="pull-right"><span class="glyphicon glyphicon-edit"></span><a href="#" data-record-id="' . $article['suffix'] . '" data-record-title="' . $article['title'] . '" data-toggle="modal" data-target="#confirm-delete">
-                 <span class="glyphicon glyphicon-remove-sign"></span></a></span> </div>';
+            <div class="col-xs-4">
+              <span class="pull-right">
+                <a href="/newpost.php?edit=1&suffix=' . $article['suffix'] . '">
+                <span class="glyphicon glyphicon-edit"></span></a>
+                <a href="#" data-record-id="' . $article['suffix'] . '" data-record-title="' . $article['title'] . '" data-toggle="modal" data-target="#confirm-delete">
+                 <span class="glyphicon glyphicon-remove-sign"></span></a>
+              </span> </div>';
             echo '
             </li>';
           }

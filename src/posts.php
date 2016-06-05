@@ -138,7 +138,7 @@
             setTimeout(function() {
                 $modalDiv.modal('hide').removeClass('loading');
             }, 1000)
-              window.location = "index.php";
+              window.location = "index.php?admin=1";
         });
         $('#confirm-delete').on('show.bs.modal', function(e) {
             var data = $(e.relatedTarget).data();
