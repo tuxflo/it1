@@ -14,23 +14,27 @@
             event.preventDefault(); // Prevent the form from submitting via the browser
 
             var form = $(this);
+            //$("#comments").prepend(form.serialize());
             request = $.ajax({
                 type: form.attr('method'),
-                url: form.attr('action'),
+                url:  form.attr('action'),
                 data: form.serialize()
             }).done(function(data){
-                alert("worked");
-                
-                $("#comments").prepend(data);
+                if (data != "error"){
+                    var comment = JSON.parse(data);
+                    var commentHTML ="<div><h4>" 
+                                                +comment["name"] +" " +"<small>" +comment["date"] +"</small>"
+                                         +"</h4>"
+                                         +"<p>" +comment["content"] +"</p>" 
+                                    +"</div>";   
+                $("#comments").prepend(commentHTML);
+                }
+                alert("Invalid form data. Please enter your name, a vaild email address and your comment before submitting.");
+                //$("#comments").prepend(data);
+                //alert("Comment submitted successfully.");
             }).fail(function(data){
-
+                alert("Error sending comment.");
             });
-                //$.getJSON("./newcomment.php", , function (comment){
-                //var commentHTML = "<div><h4>" +comment["name"] +"</h4><p>"   
-                //  +comment["date"] +"</p></p>" 
-                //  +comment["content"] +"</p>" +"</div>"; 
-            //});
-            //alert("Comment submitted successfully.");
         });
     });
 </script>
@@ -88,16 +92,16 @@
                         <h3>Leave a comment</h3>
                         <div class="row">
                             <div class="col-md-6">
-                                <input id="name" class="form-control" type="text" name="userName" maxlength="25" placeholder="Name" required/>
+                                <input id="userName" class="form-control" type="text" name="userName" maxlength="25" placeholder="Name" required/>
                             </div>
                             <div class="col-md-6">
-                                <input id="email" class="form-control" type="text" name="userEmail" maxlength="50" placeholder="Email" required/>
+                                <input id="userEmail" class="form-control" type="text" name="userEmail" maxlength="50" placeholder="Email" required/>
                                 <br/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <textarea id="comment" class="form-control" type="text" name="userComment" maxlength="2000" rows="5" placeholder="Comment" required></textarea>
+                                <textarea id="userComment" class="form-control" type="text" name="userComment" maxlength="2000" rows="5" placeholder="Comment" required></textarea>
                                 <br/>
                             </div>
                         </div>
@@ -115,16 +119,6 @@
             <div class="row">
                 <!-- comments start here-->
                 <div class="col-md-12" id="comments">
-                    <div class="">
-                        <h4>Name</h4>
-                        <p>Datum</p>
-                        <p>Comment über mehrere Zeilen...</p>
-                    </div>
-                    <div class="">
-                        <h4>Name</h4>
-                        <p>Datum</p>
-                        <p>Comment über mehrere Zeilen...</p>
-                    </div>
                 </div>
             </div> <!-- end comments row div-->
         </div>
