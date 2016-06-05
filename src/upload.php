@@ -1,25 +1,4 @@
-<!--
-    Der Menüeintrag „Edit Post“ und „Upload Picture“ kann auf die selbe
-    Unterseite oder auch auf unterschiedliche verweisen. Dort gibt es
-    ein Formular zum Upload von Bildern, eine Thumbnail-Galerie aller
-    bereits hochgeladenen Bilder sowie einer tabellarischen Liste wie in
-    (7). Alle Thumbnails sind mit dem Dateinamen des Bildes beschriftet
-    und haben einen Button zum Löschen des Bildes. Zum Upload sind
-    nur Bild-Dateien mit einer Größe von max. 2 MB erlaubt. Bilder
-    werden in der Originalgröße abgespeichert. Eine automatische
-    Skalierung beim Upload ist nicht gefordert, kann aber implementiert
-    werden.
-
-    picture url:
-    https://upload.wikimedia.org/wikipedia/commons/8/8c/Cole_Thomas_The_Course_of_Empire_The_Arcadian_or_Pastoral_State_1836.jpg
-    http://www.publicdomainpictures.net/pictures/160000/velka/under-water-fantasy2.jpg
-    http://www.publicdomainpictures.net/pictures/170000/velka/under-water-fantasy5.jpg
--->
-
-<?php 
-    require_once("sidebar.php"); 
-    date_default_timezone_set("UTC");
-?>
+<?php include("head.php"); ?>
 
 <?php // Image Upload Script
     if (isset($_FILES["f"]) && ($_FILES["f"]["error"] == 0)){
@@ -62,19 +41,14 @@
   }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<?php include("head.html"); ?>
 <body>
     <!-- Navigation -->
-<?php include("nav.html"); ?>
+<?php include("nav.php"); ?>
     <!-- Page Content -->
     <div class="container">
         <div class="row">
             <?php 
-                $sidebar = new Sidebar();
-                $sidebar->getSidebar(); 
+                $sidebar->getSidebar(true); 
             ?>
 
             <div class="col-md-9">
