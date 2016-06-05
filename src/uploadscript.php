@@ -1,14 +1,14 @@
 <?php // Image Upload Script
-    if (isset($_FILES["f"]) && ($_FILES["f"]["error"] == 0)){
+    if (isset($_FILES["f"]) && (htmlentities($_FILES["f"]["error"]) == 0)){
                
-        $imginfo = getimagesize($_FILES["f"]["tmp_name"]);
+        $imginfo = getimagesize(htmlentities($_FILES["f"]["tmp_name"]));
 
         if ($imginfo){ // file is image
             $allowed_mime = array( "image/jpeg" => "jpg", "image/png" => "png", "image/gif" => "gif",);
 
             if (isset($allowed_mime[$imginfo["mime"]])){
                 // delete unallowed characters from filename, add correct mimetype 
-                $fname = basename($_FILES["f"]["name"]); 
+                $fname = basename(htmlentities($_FILES["f"]["name"])); 
                 $type = "." . $allowed_mime[$imginfo["mime"]];
 
                 $fname = preg_replace("/\.(jpe?g|gif|png)$/i", "", $fname); 
@@ -23,7 +23,7 @@
                 }
                        
                 // copy file to img/
-                if (move_uploaded_file($_FILES["f"]["tmp_name"], $path)){
+                if (move_uploaded_file(htmlentities($_FILES["f"]["tmp_name"]), $path)){
                     // print "fileuploaded successfully\n";
                 }
             }

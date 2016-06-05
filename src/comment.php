@@ -8,7 +8,7 @@
 
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
             
-            if (isset(/*$_POST['Submit'],*/ $_POST['userName'], $_POST['userEmail'], $_POST['userComment'])){
+            if (isset($_POST['userName'], $_POST['userEmail'], $_POST['userComment'])){
                 if (strlen($_POST['userName']) > 25 || strlen($_POST['userEmail']) > 50 || strlen($_POST['userComment']) > 2000){
                     // print error
                     echo "error";

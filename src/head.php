@@ -13,8 +13,9 @@
   $warnings = new Warnings();
   if(isset($_GET['admin']))
   {
-    if($_GET['admin'] === '1' || $GET['admin'] === '0')
-      $admin = (bool) $_GET['admin'];
+    $tmp = htmlentities($_GET['admin']);
+    if($tmp === '1' || $tmp === '0')
+      $admin = (bool) $tmp;
   }
 ?>
 <head>

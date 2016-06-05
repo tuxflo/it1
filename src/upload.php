@@ -1,7 +1,7 @@
 <?php include("head.php"); ?>
 
 <?php // delete script
-  if (isset($_POST["_DELETE"]) && $_POST["_DELETE"]=='Delete'){
+  if (isset($_POST["_DELETE"]) && htmlentities($_POST["_DELETE"])=='Delete'){
     $img = htmlentities($_POST['img']);
     unlink($img);
   }

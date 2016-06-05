@@ -6,7 +6,7 @@ if(isset($_POST['suffix']))
   $filename = "./articles/" . $suffix . ".json";
 
   if(file_exists($filename)) {
-    echo 'The suffix ' . $_POST["suffix"] . " is already taken." . " Please choose a different one";
+    echo 'The suffix ' . $suffix . " is already taken." . " Please choose a different one";
   }
   else
     echo '';

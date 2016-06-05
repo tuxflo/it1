@@ -5,7 +5,7 @@
 <?php
   $pagenumber = 1;
   if(isset($_GET['page']))
-    $pagenumber = $_GET['page'];
+    $pagenumber = htmlentities($_GET['page']);
 
   if($pagenumber > $list->getArticleCount() + 1)
   {
