@@ -1,7 +1,7 @@
 <!-- includes and head -->
 <?php include("head.php");
-   if($_GET["suffix"]) {
-      $filename = './articles/' . $_GET['suffix'] . '.json';
+   if(isset($_GET["suffix"])) {
+      $filename = './articles/' . htmlentities($_GET['suffix']) . '.json';
       $test = Article::fromJson($filename);
    }
 ?>
@@ -10,32 +10,28 @@
 
 <script language="JavaScript" type="text/javascript">
     $("document").ready(function(){
-        $("#commentButton").click(function() {
-            //for testing
-            var comment = [];
-            comment["name"] = "x";
-            var today = new Date();
-            var strDate = 'Y-m-d'
-                .replace('Y', today.getFullYear())
-                .replace('m', today.getMonth()+1)
-                .replace('d', today.getDate());
-            comment["date"] = strDate;
-            comment["content"] = "content";
+        $("#commentForm").submit(function(event) {
+            event.preventDefault(); // Prevent the form from submitting via the browser
 
+            var form = $(this);
+            request = $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize()
+            }).done(function(data){
+                alert("worked");
+                
+                $("#comments").prepend(data);
+            }).fail(function(data){
 
-            //$.getJSON("./newcomment.php", , function (comment){
-                var commentHTML = "<div><h4>";
-                commentHTML =  commentHTML.concat(comment["name"]); 
-                commentHTML =  commentHTML.concat("</h4><p>"); 
-                commentHTML =  commentHTML.concat(comment["date"]); 
-                commentHTML =  commentHTML.concat("</p><p>"); 
-                commentHTML =  commentHTML.concat(comment["content"]); 
-                commentHTML =  commentHTML.concat("</p>"); 
-                commentHTML =  commentHTML.concat("</div>"); 
-                $("#comments").prepend(commentHTML);
             });
-            alert("Comment submitted successfully.);
-        //});
+                //$.getJSON("./newcomment.php", , function (comment){
+                //var commentHTML = "<div><h4>" +comment["name"] +"</h4><p>"   
+                //  +comment["date"] +"</p></p>" 
+                //  +comment["content"] +"</p>" +"</div>"; 
+            //});
+            //alert("Comment submitted successfully.");
+        });
     });
 </script>
 
@@ -88,7 +84,7 @@
             <div class="row"> 
                 <div class="col-md-12" style="background-color:whitesmoke; border-radius: 10px;">
                     <!--form action="<?php /*echo htmlentities( $_SERVER['PHP_SELF'] )."?suffix=".htmlentities( $_GET["suffix"] );*/?>" onsubmit="onsubmit()" id="commentForm" method="post" enctype="multipart/form-data" required-->
-                    <form id="commentForm" method="post" enctype="multipart/form-data" required>
+                    <form id="commentForm" action="./comment.php?"<?php echo"suffix=" .htmlentities($_GET["suffix"]); ?>       method="post" enctype="multipart/form-data" required>
                         <h3>Leave a comment</h3>
                         <div class="row">
                             <div class="col-md-6">
@@ -107,7 +103,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <input class="btn btn-primary pull-right" id="commentButton" type="submit" value="Submit" />
+                                <input id="commentButton" class="btn btn-primary pull-right" type="submit" value="Submit" />
                                 <br/>
                             </div>
                         </div>

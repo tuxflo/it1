@@ -1,8 +1,4 @@
-// http://getbootstrap.com/examples/blog/
-// https://jonsuh.com/blog/jquery-ajax-call-to-php-script-with-json-return/
-
 <?php 
-    
     if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
     
         if (isset($_POST['Submit'], $_POST['userName'], $_POST['userEmail'], $_POST['userComment'])){
@@ -25,10 +21,10 @@
         // TODO: write comment into json
         
         echo json_encode($comment);
+        return;
     }
+
+// http://getbootstrap.com/examples/blog/
+// https://jonsuh.com/blog/jquery-ajax-call-to-php-script-with-json-return/
+
 ?>
-
-// jQuery.getJSON(url[, data][, success]);
-// $('#get-data').click(function() {
-
-isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
