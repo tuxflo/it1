@@ -33,7 +33,6 @@
     <link rel="stylesheet" href="css/simplemde.min.css">
     <script src="js/simplemde.min.js"></script>
     <script src="js/jquery.js"></script>
-    <script src="js/validator.js"></script>
     <script src="js/bootstrap-hover-dropdown.min.js"></script>
     <link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
