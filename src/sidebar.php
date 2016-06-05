@@ -8,7 +8,7 @@ class Sidebar
   {
     echo '
     <div class="col-md-3">
-      <div class="hidden-sm hidden-xs">
+      <div class="">
         <div class="well">
 
           <header>
@@ -33,7 +33,7 @@ class Sidebar
               break;
             echo '
             <li class="row">
-              <div class="col-md-9">
+              <div class="col-xs-8">
                 <p><a href="posts.php?suffix=' . $article['suffix'];
               if($admin)
                 echo '&admin=1';
@@ -43,9 +43,13 @@ class Sidebar
               </div>';
             if($admin)
             echo ' 
-            <div class="col-md-3">
-             <span class="pull-right"><span class="glyphicon glyphicon-edit"></span><a href="#" data-record-id="' . $article['suffix'] . '" data-record-title="' . $article['title'] . '" data-toggle="modal" data-target="#confirm-delete">
-                 <span class="glyphicon glyphicon-remove-sign"></span></a></span> </div>';
+            <div class="col-xs-4">
+              <span class="pull-right">
+                <a href="/newpost.php?edit=1&suffix=' . $article['suffix'] . '">
+                <span class="glyphicon glyphicon-edit"></span></a>
+                <a href="#" data-record-id="' . $article['suffix'] . '" data-record-title="' . $article['title'] . '" data-toggle="modal" data-target="#confirm-delete">
+                 <span class="glyphicon glyphicon-remove-sign"></span></a>
+              </span> </div>';
             echo '
             </li>';
           }
