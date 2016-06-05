@@ -82,7 +82,7 @@ class jsonList
     {
       $sortedArray[$key] = $row['date'];
     }
-    array_multisort($sortedArray, SORT_ASC, $jsonfiles);
+    array_multisort($sortedArray, SORT_DEC, $jsonfiles);
     $this->articles = $jsonfiles;
     $fh = fopen("fileList.json", 'w');
     fwrite($fh, json_encode($jsonfiles));
