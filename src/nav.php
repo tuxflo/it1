@@ -22,7 +22,16 @@
           <a href="index.php?admin=1" class="dropdown-toggle" data-hover="dropdown" data-deley="1000" data-close-others="true" >Admin<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="newpost.php">New Post</a></li>
-            <li><a href="edit.php">Edit Post</a></li>
+            <?php
+            //if no suffix passed, edit the last article
+            $list = new jsonList();
+            $suffix = '';
+            $array = $list->getArray()[0];
+            $suffix = $array['suffix'];
+            if(isset($_GET['suffix']))
+              $suffix = htmlentities($_GET['suffix']);
+            ?>
+            <li><a href="./newpost.php?edit=1&suffix=<?php echo $suffix; ?>">Edit Post</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="upload.php">Upload Images</a></li>
           </ul>
