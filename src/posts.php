@@ -1,22 +1,11 @@
-<?php
-  require_once("Article.php");
-  require_once("sidebar.php");
-  require_once("jsonList.php");
+<!-- includes and head -->
+<?php include("head.php");
    if($_GET["suffix"]) {
       $filename = './articles/' . $_GET['suffix'] . '.json';
       $test = Article::fromJson($filename);
    }
-  $admin = 0;
-  if(isset($_GET['admin']))
-  {
-    if($_GET['admin'] === '1' || $GET['admin'] === '0')
-      $admin = (bool) $_GET['admin'];
-  }
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<?php include("head.html"); ?>
 <body>
 
 <script language="JavaScript" type="text/javascript">
@@ -45,13 +34,13 @@
                 commentHTML =  commentHTML.concat("</div>"); 
                 $("#comments").prepend(commentHTML);
             });
-            //alert("Comment submitted successfully.);
+            alert("Comment submitted successfully.);
         //});
     });
 </script>
 
     <!-- Navigation -->
-<?php include("nav.html"); ?>
+<?php include("nav.php"); ?>
     <!-- Page Content -->
 <div class="row-fluid top30 pagetitle">
   
@@ -64,13 +53,7 @@
   </div>
 </div>
 <div class="container">
-<?php
-  $sidebar = new Sidebar();
-  if($admin)
-    $sidebar->getAdminSidebar();
-  else
-    $sidebar->getSidebar();
-?>
+<?php $sidebar->getSidebar($admin); ?>
     <div class="col-md-9">
       <?php echo $test->getArticle($admin); ?>
     </div>

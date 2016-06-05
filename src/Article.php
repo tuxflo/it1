@@ -88,46 +88,23 @@ class Article
     <div class="row">
             <div class="col-sm-12">
             <h3 class="title"> <a href="posts.php?suffix=' . $this->getSuffix();
-    if($admin == true)
+    //echo "Test";
+    if($admin)
       $row .= "&admin=1";
     
     $row .= '">' . $this->title . '</a></h3>
               <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
               . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20
-              </p>
-              <p>' . $this->parsedown->text($preview) . '</p>';
+              </p>' . $this->parsedown->text($preview);
 
               //check if "read more" link is necessary
               if(count($tmp) > 15)
               {
-                $row .= '<p class="text-muted" style="float:right"><a href="/posts.php?suffix=' . $this->getSuffix() . '">Read more...</a></p>';
-              }
-              $row .= '
-            </div>
-          </div>';
-    return $row;
-  }
-
-  public function getAdminPreview()
-  {
-    date_default_timezone_set("UTC");
-    $tmp = explode("\n", $this->text);
-    $tmp = array_slice($tmp, 0, 16);
-    $preview = implode("\n", $tmp);
-
-    $row = '
-    <div class="row">
-            <div class="col-sm-12">
-            <h3 class="title"> <a href="posts.php?suffix=' . $this->getSuffix() . '">' . $this->title . '</a></h3>
-              <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> '
-              . date("F d, Y @ H:i", $this->date) . ' <span class="glyphicon glyphicon-comment"></span> 20<a href="/newpost.php?edit=1&suffix=' . $this->getSuffix() . '"<span style="float:right"><span class="glyphicon glyphicon-edit"></span> Edit Post</span></a>
-              </p>
-              <p>' . $this->parsedown->text($preview) . '</p>';
-
-              //check if "read more" link is necessary
-              if(count($tmp) > 15)
-              {
-                $row .= '<p class="text-muted" style="float:right"><a href="/posts.php?suffix=' . $this->getSuffix() . '">Read more...</a></p>';
+                $row .= '
+<p class="text-muted" style="float:right"><a href="/posts.php?suffix=' . $this->getSuffix();
+                if($admin)
+                  $row .= "&admin=1";
+                $row .= '">Read more...</a></p>';
               }
               $row .= '
             </div>

@@ -1,5 +1,5 @@
+<?php include("head.php");?>
 <?php
-require_once("Article.php");
 $edit = false;
 $article = null;
 if(isset($_GET['edit']))
@@ -13,18 +13,15 @@ if(isset($_GET['suffix']) && $edit == true)
   $article = Article::fromJson("./articles/" . $suffix . ".json");
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-  <?php include("head.html"); ?>
 <body>
     <!-- Navigation -->
-  <?php include("nav.html"); ?>
+  <?php include("nav.php"); ?>
     <!-- Page Content -->
     <div class="container">
     <?php include("postinput.php"); ?>
     </div> <!-- /.container -->
-
-    <?php include("foot_include.html"); ?>
+<?php include("foot_include.html"); ?>
+</body>
 <script type="text/javascript">
 var simplemde = new SimpleMDE({ element: $("#markdown")[0] });
 <?php
@@ -75,6 +72,5 @@ function check_file_exists_ajax(suffix){
 }
 });
 </script>
-</body>
 
 </html>

@@ -34,6 +34,33 @@ class jsonList
       return array_slice($this->articles, $start, $end);
   }
 
+  public function getPreviewPage($page, $admin)
+  {
+    $currentPage = $this->getArticlePage($page);
+    foreach($currentPage as $article)
+    {
+      $a = array_pop($currentPage);
+      $filename = "articles/" . $a['suffix'] . ".json";
+      $tmp = Article::fromJson($filename);
+      echo $tmp->getPreview($admin);
+      echo "<hr>";
+    }
+  }
+
+  public function getPagination($pagenumber)
+  {
+    echo '
+    <ul class="pagination pagination-lg pull-right">';
+      for($i=1; $i<($this->getArticleCount() /2) +1; $i++)
+      {
+        if($pagenumber == $i)
+          echo '<li class="active"><a href="?page=' . $i . '">' . $i . '</a></li>';
+        else
+          echo '<li><a href="?page=' . $i . '">' . $i . '</a></li>';
+      }
+      echo '</ul>';
+  }
+
   public function updateList()
   {
     $jsonfiles = array();
