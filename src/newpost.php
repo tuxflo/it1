@@ -4,12 +4,12 @@ $edit = false;
 $article = null;
 if(isset($_GET['edit']))
 {
-  if($_GET['edit'] === '1' || $GET['edit'] === '0')
+  if(htmlentities($_GET['edit']) === '1' || htmlentities($GET['edit']) === '0')
     $edit = (bool) $_GET['edit'];
 }
 if(isset($_GET['suffix']) && $edit == true)
 {
-  $suffix = $_GET['suffix'];
+  $suffix = htmlentities($_GET['suffix']);
   $article = Article::fromJson("./articles/" . $suffix . ".json");
 }
 ?>
