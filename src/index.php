@@ -39,6 +39,6 @@ HEREDOC;
   </div>
 </div>
 <?php include("foot_include.html"); ?>
-<?php include("deletescript.html"); ?>
+<?php include("js/deletescript.js"); ?>
 </body>
 </html>

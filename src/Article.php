@@ -121,6 +121,7 @@ class Article
     $this->suffix = $data['suffix'];
     $this->date = $data['date'];
     $this->text = $data['text'];
+    $this->comments = $data['comments'];
   }
 }
 ?>
